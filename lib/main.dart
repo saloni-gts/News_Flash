@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:news_daily/components/custom_curved_appbar.dart';
 import 'package:news_daily/components/global_navigatorkey.dart';
+import 'package:news_daily/news_detail_page.dart';
 import 'package:news_daily/providers/home_provider.dart';
 import 'package:news_daily/settings_page.dart';
+import 'package:news_daily/splash_page.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           builder: EasyLoading.init(),
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          home: const SplashScreen(),
         );
       }),
     );
@@ -49,9 +51,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({
+    super.key,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -75,7 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const NewsDetailScreen()));
+                  },
                   child: Container(
                     height: 150,
                     decoration: BoxDecoration(
@@ -90,7 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingScreen()));
         },
-        tooltip: 'Increment',
         backgroundColor: const Color.fromARGB(255, 93, 138, 221),
         child: const Icon(
           Icons.settings,
