@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_daily/constants/app_images.dart';
 
 class NewsDetailScreen extends StatefulWidget {
   const NewsDetailScreen({super.key});
@@ -26,6 +27,16 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                     ),
                   ),
                   height: MediaQuery.of(context).size.height * .40,
+                  width: double.infinity,
+                  child: 
+                  
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Image.asset(
+                      AppImage.splash,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 50,
