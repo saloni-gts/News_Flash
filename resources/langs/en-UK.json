@@ -1,0 +1,11 @@
+{
+    "additionText": {
+        "errorr": "Error",
+        "success": "Success",
+        "warnig": "Warning",
+        "Settings": "Settings",
+        "darkMode": "Dark Mode",
+        "chngLang": "Change Language",
+        "smallContinue": "Continue"
+    }
+}
