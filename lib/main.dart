@@ -26,7 +26,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -36,9 +36,10 @@ class MyApp extends StatelessWidget {
       child: Consumer<HomeProvider>(builder: (context, hp, child) {
         return MaterialApp(
           title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
           darkTheme: hp.darkMode ? ThemeData.dark() : ThemeData.light(),
           navigatorKey: GlobalVariable.navState,
-          // navigatorObservers: [navigatorObserver],
+    
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
@@ -50,56 +51,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    super.key,
-  });
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomCurvedAppbar(
-        title: "Newsflash",
-        showBackIcon: false,
-        isTitleCenter: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0),
-        child: ListView.builder(
-            itemCount: 8,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const NewsDetailScreen()));
-                  },
-                  child: Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(12)),
-                        border: Border.all(color: const Color.fromARGB(255, 190, 187, 187))),
-                  ),
-                ),
-              );
-            }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingScreen()));
-        },
-        backgroundColor: const Color.fromARGB(255, 93, 138, 221),
-        child: const Icon(
-          Icons.settings,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}

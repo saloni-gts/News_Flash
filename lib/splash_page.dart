@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news_daily/api/call_api.dart';
 import 'package:news_daily/constants/app_images.dart';
+import 'package:news_daily/home_page.dart';
 import 'package:news_daily/main.dart';
+import 'package:news_daily/providers/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,7 +16,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    callApi();
     navigateToHome();
+
     // TODO: implement initState
     super.initState();
   }
@@ -42,7 +48,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    
     });
+  }
+  
+  Future<void> callApi() async {
+
+HomeProvider homeProvider=Provider.of(context,listen: false);
+    await homeProvider.fetchNewsApiCall();
   }
 }

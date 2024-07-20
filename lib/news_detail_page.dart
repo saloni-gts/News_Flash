@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_daily/api/news_data_model.dart';
 import 'package:news_daily/constants/app_images.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 class NewsDetailScreen extends StatefulWidget {
-  const NewsDetailScreen({super.key});
+  Articles? newsData;
+   NewsDetailScreen({super.key, this.newsData});
 
   @override
   State<NewsDetailScreen> createState() => _NewsDetailScreenState();
@@ -10,6 +13,13 @@ class NewsDetailScreen extends StatefulWidget {
 
 class _NewsDetailScreenState extends State<NewsDetailScreen> {
   @override
+void initState() {
+  print("WIDGET DATA ---${widget.newsData}");
+  print("WIDGET DATA ---${widget.newsData?.title}");
+    super.initState();
+  }
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 93, 138, 221),
@@ -31,11 +41,19 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                   child: 
                   
                   Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Image.asset(
-                      AppImage.splash,
-                      fit: BoxFit.contain,
+                    padding: const EdgeInsets.all(0.0),
+                    child:ClipRRect(
+                         borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40),
                     ),
+                      child: CachedNetworkImage(
+                            imageUrl: widget.newsData?.urlToImage??"",fit: BoxFit.fill,
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                         ),
+                    ),
+                  
                   ),
                 ),
                 Positioned(
@@ -63,7 +81,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
   }
 
   _buildBody() {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
         child: Padding(
       padding: EdgeInsets.only(bottom: 15.0),
       child: Column(
@@ -73,9 +91,28 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             height: 25,
           ),
           Text(
-            "Nowadays, almost every application has a dark theme feature, for example, YouTube, WhatsApp, and Instagram. Some of them have a  toggle button in their app to on/ off the dark theme and others check theme settings in the device and display the selected theme. So in this blog let’s check how to implement the dark theme in the flutter.",
-            style: TextStyle(fontSize: 18, color: Colors.white),
+            widget.newsData?.title??"",
+            style: TextStyle(fontSize:32, color: Colors.white,fontWeight: FontWeight.bold),
           ),
+
+          SizedBox(height: 15,),
+ Text(
+            widget.newsData?.description??"",
+            style: TextStyle(fontSize: 22, color: Colors.white,fontWeight: FontWeight.w700),
+          ),   SizedBox(height: 15,),
+          Text(
+            widget.newsData?.content??"",
+            style: TextStyle(fontSize: 22, color: Colors.white,fontWeight: FontWeight.w700),
+          ),SizedBox(height: 15,),
+
+
+          TextButton(onPressed: () async {
+             if (!await launchUrl(Uri.parse(widget.newsData?.url??""))) {
+    throw Exception('Could not launch');
+  }
+          }, child: Text("Read More",
+            style: TextStyle(fontSize: 18, color: Colors.white,fontStyle: FontStyle.italic,decoration:TextDecoration.underline ),
+          ))
         ],
       ),
     ));
