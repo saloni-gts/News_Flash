@@ -33,8 +33,6 @@ class AppApi{
   }
   
   static Future commonGetMethod(String url) async {
-
- 
     var response = await netWorkCalls.get(url);
     return response;
   }
