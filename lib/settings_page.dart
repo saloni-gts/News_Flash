@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:news_daily/components/custom_curved_appbar.dart';
 import 'package:news_daily/components/global_navigatorkey.dart';
 import 'package:news_daily/constants/app_languages.dart';
 import 'package:news_daily/generated/locale_keys.g.dart';
+import 'package:news_daily/home_page.dart';
 import 'package:news_daily/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -131,10 +135,17 @@ class _SettingScreenState extends State<SettingScreen> {
                       elevation: 8.0,
                     ).then((value) async {
                       print("value---- $value");
+                      HomeProvider hp = Provider.of(context, listen: false);
                       if (value == 1) {
+                        bool isSelected(BuildContext context) => AppLanguage.english == context.locale;
                         await GlobalVariable.navState.currentContext?.setLocale(AppLanguage.english);
+                        EasyLoading.showSuccess("Language Changed Successfully");
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                       } else {
+                        bool isSelected(BuildContext context) => AppLanguage.spanish == context.locale;
                         await GlobalVariable.navState.currentContext?.setLocale(AppLanguage.spanish);
+                        EasyLoading.showSuccess("Language Changed Successfully");
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                       }
                     });
                   },

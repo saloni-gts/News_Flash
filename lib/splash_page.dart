@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:news_daily/api/call_api.dart';
 import 'package:news_daily/constants/app_images.dart';
 import 'package:news_daily/home_page.dart';
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 200, width: 200, child: Image.asset(AppImage.splash)),
+            SizedBox(height: 200, width: 200, child: SvgPicture.asset(AppImage.splashsvg, semanticsLabel: 'Acme Logo')),
             const SizedBox(
               height: 15,
             ),
@@ -49,13 +50,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-    
     });
   }
-  
-  Future<void> callApi() async {
 
-HomeProvider homeProvider=Provider.of(context,listen: false);
+  Future<void> callApi() async {
+    HomeProvider homeProvider = Provider.of(context, listen: false);
     await homeProvider.fetchNewsApiCall();
   }
 }

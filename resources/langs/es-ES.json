@@ -1,17 +1,17 @@
 {
-    "additionText": 
-
-
-    {
+    "additionText": {
         "errorr": "Error",
         "success": "Éxito",
         "warnig": "Advertencia",
         "Settings": "Configuraciones",
         "darkMode": "Modo Oscuro",
         "chngLang": "Cambiar Idioma",
-        "smallContinue": "Continuar"
+        "smallContinue": "Continuar",
+        "general": "General",
+        "entertainment": "Entretenimiento",
+        "health": "Salud",
+        "sports": "Deportes",
+        "business": "Negocios",
+        "technology": "Tecnología"
     }
-
-
-
 }

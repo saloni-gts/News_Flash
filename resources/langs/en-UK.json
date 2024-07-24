@@ -6,6 +6,14 @@
         "Settings": "Settings",
         "darkMode": "Dark Mode",
         "chngLang": "Change Language",
-        "smallContinue": "Continue"
+        "smallContinue": "Continue",
+
+        "general": "general",
+        "entertainment": "entertainment",
+        "health": "health",
+        "sports": "sports",
+        "business": "business",
+        "technology": "technology"
+
     }
 }
