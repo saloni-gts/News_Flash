@@ -4,13 +4,10 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+The app features a splash screen with a logo in SVG format and text. After the splash screen, the home screen displays a list of all news articles. At the top of the home screen, there is a horizontally scrollable list from which users can select their preferred news category by tapping on a button.
 
-A few resources to get you started if this is your first Flutter project:
+Users can view news details by tapping on a news container, which navigates them to the news detail screen. This screen displays the image, title, and description of the news. Additionally, there is a 'Read More' button that redirects users to the web to read the complete news article.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The home page also includes a floating button with a settings icon. Tapping this button navigates users to the settings page. The settings page offers two options: a switch to enable or disable dark mode and a dropdown menu to select and change the language.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+An additional functionality of the app is handling no internet conditions.
